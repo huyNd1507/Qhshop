@@ -1,0 +1,17 @@
+.admin {
+  display: flex;
+  max-width: 1280px;
+  margin: auto;
+  padding: 0 20px;
+  position: relative;
+
+  .navbar {
+    width: 25%;
+    min-height: 80vh;
+  }
+
+  .content {
+    width: 75%;
+    padding: 1rem;
+  }
+}

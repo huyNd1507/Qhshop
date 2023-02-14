@@ -1,0 +1,26 @@
+.pagination > li > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  margin-left: 5px;
+  font-size: 20px;
+}
+
+.pagination > li > button.active {
+  background-color: var(--black);
+  color: #f6f6f6;
+}
+
+.pagination > li > a:hover {
+  border: 2px solid var(--black);
+}
+
+.pagination > li > button.hide {
+  display: none;
+}
+
+.pagination {
+  margin: 10px 0;
+}

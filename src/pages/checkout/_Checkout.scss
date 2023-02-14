@@ -1,0 +1,52 @@
+@media only screen and (max-width: 750px) {
+  .flex-reverse {
+    flex-direction: column-reverse;
+  }
+}
+
+.custumer-info {
+  h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+  .form-group {
+    width: 100%;
+    margin-bottom: 25px;
+
+    label {
+      display: block;
+      font-size: 15px;
+      color: #808080;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+  }
+
+  .form-group-select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    margin-bottom: 25px;
+  }
+
+  .btn {
+    // width: 30%;
+    padding: 10px 10px;
+    margin: 10px 0;
+    display: block;
+    background: #0099ff;
+    color: #fff;
+    border: none;
+    outline: none;
+    font-size: 15px;
+  }
+}

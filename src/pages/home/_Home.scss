@@ -1,0 +1,116 @@
+.home-container {
+  max-width: 1280px;
+  margin: 20px auto;
+  position: relative;
+
+  .product-wrapper {
+    // margin-top: 50px;
+    text-align: center;
+
+    &:hover .control-btn .prev {
+      left: 0px;
+    }
+
+    &:hover .control-btn .next {
+      right: 0px;
+    }
+
+    .product-heading {
+      line-height: 25px;
+      padding: 20px;
+      margin-bottom: 15px;
+      font-size: 25px;
+    }
+
+    .product-card {
+      text-align: center;
+    }
+
+    .control-btn .next,
+    .control-btn .prev {
+      position: absolute;
+      // top: 40%;
+      top: 46%;
+      width: 50px;
+      height: 50px;
+      line-height: 55px;
+      background: #0f3460;
+      border-radius: 50%;
+      transform: 0.5s;
+      z-index: 5;
+      color: #fff;
+      font-size: 23px;
+    }
+
+    .control-btn .prev {
+      left: -20px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .control-btn .next {
+      right: -20px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .control-btn .prev i,
+    .control-btn .next i {
+      font-size: 20px;
+      transition: 0.5s;
+      color: #fff;
+    }
+
+    .control-btn .prev:hover,
+    .control-btn .next:hover {
+      background: #e94560;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
+// ======================
+.annocument {
+  margin: 40px 0px 50px 0px;
+  width: 100%;
+}
+
+//========================
+.delivery {
+  margin-bottom: 40px;
+  .delivery-item {
+    height: 250px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 15px;
+    border-radius: 5px;
+
+    .icon {
+      font-size: 25px;
+      margin: auto;
+      width: 70px;
+      height: 70px;
+      line-height: 70px;
+      margin-bottom: 20px;
+      background: #f3f5f9;
+      border-radius: 50%;
+    }
+
+    h3 {
+      font-size: 17px;
+    }
+
+    p {
+      font-size: 15px;
+      margin-top: 20px;
+      color: #808080;
+      font-weight: 400;
+    }
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .annocument,
+  .delivery {
+    padding: 0 20px;
+  }
+}
