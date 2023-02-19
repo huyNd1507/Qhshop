@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectUserID, selectUserName } from "../../redux/slice/authSlice";
-import Card from "../card/Card";
-import styles from "./ReviewProducts.module.scss";
+import "./ReviewProducts.scss";
 import StarsRating from "react-star-rate";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { db } from "../../firebase/config";
@@ -30,7 +29,7 @@ const ReviewProducts = () => {
     const today = new Date();
     const date = today.toDateString();
     const reviewConfig = {
-      // userID,
+      userID,
       userName,
       productID: id,
       rate,
@@ -50,45 +49,47 @@ const ReviewProducts = () => {
 
   return (
     <section>
-      <div className={`container ${styles.review}`}>
-        <h2>Đánh giá sản phẩm</h2>
-        {product === null ? (
-          <img src={spinnerImg} alt="Loading..." style={{ width: "50px" }} />
-        ) : (
-          <>
-            <p>
-              <b>Tên sản phẩm:</b> {product.name}
-            </p>
-            <img
-              src={product.imageURL}
-              alt={product.name}
-              style={{ width: "100px" }}
-            />
-          </>
-        )}
+      <div className="container ">
+        <div className="review">
+          <h2>Đánh giá sản phẩm</h2>
+          {product === null ? (
+            <img src={spinnerImg} alt="Loading..." />
+          ) : (
+            <>
+              <p>
+                <b>Tên sản phẩm:</b> {product.name}
+              </p>
+              <img
+                src={product.imageURL}
+                alt={product.name}
+                style={{ width: "100px" }}
+              />
+            </>
+          )}
 
-        <Card cardClass={styles.card}>
-          <form onSubmit={(e) => submitReview(e)}>
-            <label>Xếp hạng:</label>
-            <StarsRating
-              value={rate}
-              onChange={(rate) => {
-                setRate(rate);
-              }}
-            />
-            <label>Đánh giá</label>
-            <textarea
-              value={review}
-              required
-              onChange={(e) => setReview(e.target.value)}
-              cols="30"
-              rows="10"
-            ></textarea>
-            <button type="submit" className="--btn --btn-primary">
-              Gửi đánh giá
-            </button>
-          </form>
-        </Card>
+          <div className="form-review">
+            <form onSubmit={(e) => submitReview(e)}>
+              <label>Xếp hạng:</label>
+              <StarsRating
+                value={rate}
+                onChange={(rate) => {
+                  setRate(rate);
+                }}
+              />
+              <label>Đánh giá</label>
+              <textarea
+                value={review}
+                required
+                onChange={(e) => setReview(e.target.value)}
+                cols="30"
+                rows="10"
+              ></textarea>
+              <button type="submit" className="--btn --btn-primary">
+                Gửi đánh giá
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   );

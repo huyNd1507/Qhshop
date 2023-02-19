@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { db, storage } from "../../../firebase/config";
-import styles from "./ViewProducts.module.scss";
+import "./ViewProducts.scss";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Loader from "../../loader/Loader";
 import { deleteObject, ref } from "firebase/storage";
@@ -28,7 +28,7 @@ const ViewProducts = () => {
   const filteredProducts = useSelector(selectFilteredProducts);
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage, setProductsPerPage] = useState(10);
+  const [productsPerPage, setProductsPerPage] = useState(15);
   // Get Current Products
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -87,10 +87,10 @@ const ViewProducts = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <div className={styles.table}>
+      <div className="table">
         <h2>All Products</h2>
 
-        <div className={styles.search}>
+        <div className="search">
           <p>
             <b>{filteredProducts.length}</b> products found
           </p>
@@ -113,7 +113,8 @@ const ViewProducts = () => {
             </thead>
             <tbody>
               {currentProducts.map((product, index) => {
-                const { id, name, price, imageURL, category } = product;
+                const { id, name, price, priceSale, imageURL, category } =
+                  product;
                 return (
                   <tr key={id}>
                     <td>{index + 1}</td>
@@ -126,8 +127,8 @@ const ViewProducts = () => {
                     </td>
                     <td>{name}</td>
                     <td>{category}</td>
-                    <td>{`$${price}`}</td>
-                    <td className={styles.icons}>
+                    <td>${priceSale ? priceSale : price}</td>
+                    <td className="icons">
                       <Link to={`/admin/add-product/${id}`}>
                         <FaEdit size={20} color="green" />
                       </Link>

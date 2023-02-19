@@ -1,57 +1,60 @@
 import React from "react";
-import banner1 from "../../assets/banner-1.png";
-import banner2 from "../../assets/banner-2.png";
-import { AiFillCar } from "react-icons/ai";
+import Marquee from "react-fast-marquee";
 
-const diliverydata = [
-  {
-    cover: <AiFillCar />,
-    title: "Worldwide Delivery",
-    decs: "We offer competitive prices on our 100 million plus product any range.",
-  },
-  {
-    cover: <AiFillCar />,
-    title: "Safe Payment",
-    decs: "We offer competitive prices on our 100 million plus product any range.",
-  },
-  {
-    cover: <AiFillCar />,
-    title: "Shop With Confidence ",
-    decs: "We offer competitive prices on our 100 million plus product any range.",
-  },
-  {
-    cover: <AiFillCar />,
-    title: "24/7 Support ",
-    decs: "We offer competitive prices on our 100 million plus product any range.",
-  },
-];
+import banner from "./banner-data";
+import Brands from "./brand";
 
 const About = (props) => {
   return (
     <>
-      <section className="annocument ">
+      <section className="banners">
         <div className="row">
-          <div className="col-4 col-md-12 ">
-            <img src={banner1} alt="" width="100%" height="100%" />
+          <div className="col-6 col-sm-12">
+            <div className="main-banner">
+              <img src="./images/main-banner.jpg" alt="" />
+              <div className="main-banner-content">
+                <h4>SUPERCHARGED FOR PROS.</h4>
+                <h5>iPad S13+ Pro.</h5>
+                <p>From $999.00 or $41.62/mo.</p>
+                <button className="--btn --btn-primary"> BUY NOW</button>
+              </div>
+            </div>
           </div>
-          <div className="col-8 col-md-12 ">
-            <img src={banner2} alt="" width="100%" height="100%" />
+          <div className="col-6 col-sm-12">
+            <div className="row">
+              {banner.map((ban, id) => {
+                return (
+                  <div className="col-6 col-sm-6  " key={id}>
+                    <div className="small-banner">
+                      <img src={ban.img} alt="main banner" />
+                      <div className="small-banner-content ">
+                        <h4>{ban.title1}</h4>
+                        <h5>{ban.title2}</h5>
+                        <p>
+                          {ban.title3}
+                          <br /> {ban.title4}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
-      <section className="delivery">
+
+      <section className="brands">
         <div className="row">
-          {diliverydata.map((item, index) => {
-            return (
-              <div className="col-3 col-sm-12" key={index}>
-                <div className="delivery-item">
-                  <div className="icon">{item.cover}</div>
-                  <h3>{item.title}</h3>
-                  <p>{item.decs}</p>
+          <Marquee>
+            {Brands.map((brand, id) => {
+              return (
+                <div className="col-2" key={id}>
+                  <img src={brand.img} alt="" />
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </Marquee>
         </div>
       </section>
     </>

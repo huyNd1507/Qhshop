@@ -1,5 +1,5 @@
 import React from "react";
-import "./_CheckoutSummary.scss";
+import "./CheckoutSummary.scss";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -17,15 +17,15 @@ const CheckoutSummary = () => {
     <>
       {cartItems.lenght === 0 ? (
         <>
-          <p>Không có sản phẩm trong giỏ hàng.</p>
+          <p>No Products.</p>
           <button className="--btn">
-            <Link to="/#products">Trở lại</Link>
+            <Link to="/#products">Back</Link>
           </button>
         </>
       ) : (
         <div className="checkout-summery">
-          <h2>Thông tin sản phẩm</h2>
-          <h3>Tổng số sản phẩm: {cartTotalQuantity}</h3>
+          <h2>Product information</h2>
+          <h3>Total products: {cartTotalQuantity}</h3>
           {cartItems.map((item, index) => {
             const { id, name, price, imageURL, category, brand, cartQuantity } =
               item;
@@ -57,7 +57,7 @@ const CheckoutSummary = () => {
           })}
 
           <div className="info-total">
-            <p>Tổng:</p>
+            <p>Total:</p>
             <p>${cartTotalAmount}</p>
           </div>
         </div>

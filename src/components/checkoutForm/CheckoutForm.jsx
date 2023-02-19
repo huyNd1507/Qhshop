@@ -4,8 +4,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import styles from "./CheckoutForm.module.scss";
-import Card from "../card/Card";
+import "./CheckoutForm.scss";
 import CheckoutSummary from "../checkoutSummary/CheckoutSummary";
 import spinnerImg from "../../assets/spinner.jpg";
 import { toast } from "react-toastify";
@@ -90,13 +89,11 @@ const CheckoutForm = () => {
       .confirmPayment({
         elements,
         confirmParams: {
-          // Make sure to change this to your payment completion page
           return_url: "http://localhost:3000/checkout-success",
         },
         redirect: "if_required",
       })
       .then((result) => {
-        // ok - paymentIntent // bad - error
         if (result.error) {
           toast.error(result.error.message);
           setMessage(result.error.message);
@@ -116,35 +113,26 @@ const CheckoutForm = () => {
 
   return (
     <section className="checkout">
-      <div className={`container ${styles.checkout}`}>
+      <div className="container ">
         <form onSubmit={handleSubmit}>
-          <div>
-            <CheckoutSummary />
-          </div>
-          <div>
-            <Card cardClass={`${styles.card} ${styles.pay}`}>
-              <h3>Stripe Checkout</h3>
-              <PaymentElement id={styles["payment-element"]} />
-              <button
-                disabled={isLoading || !stripe || !elements}
-                id="submit"
-                className={styles.button}
-              >
-                <span id="button-text">
-                  {isLoading ? (
-                    <img
-                      src={spinnerImg}
-                      alt="Loading..."
-                      style={{ width: "20px" }}
-                    />
-                  ) : (
-                    "Pay now"
-                  )}
-                </span>
-              </button>
-              {/* Show any error or success messages */}
-              {message && <div id={styles["payment-message"]}>{message}</div>}
-            </Card>
+          <CheckoutSummary />
+          <div className="checkout-pay">
+            <h2>Stripe Checkout</h2>
+            <PaymentElement className="payment-element" />
+            <button
+              disabled={isLoading || !stripe || !elements}
+              id="submit"
+              className="--btn --btn-primary "
+            >
+              <span id="button-text">
+                {isLoading ? (
+                  <img src={spinnerImg} alt="Loading..." />
+                ) : (
+                  "Pay now"
+                )}
+              </span>
+            </button>
+            {message && <div className="payment-message">{message}</div>}
           </div>
         </form>
       </div>

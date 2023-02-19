@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import styles from "./Admin.module.scss";
+import "./Admin.scss";
 import AddProduct from "../../components/admin/addProduct/AddProduct";
 import Home from "../../components/admin/home/Home";
 import Navbar from "../../components/admin/navbar/Navbar";
@@ -11,11 +11,11 @@ import ViewProducts from "../../components/admin/viewProducts/ViewProducts";
 
 const Admin = () => {
   return (
-    <div className={styles.admin}>
-      <div className={styles.navbar}>
+    <div className="admin">
+      <div className="navbar">
         <Navbar />
       </div>
-      <div className={styles.content}>
+      <div className="content">
         <Routes>
           <Route path="home" element={<Home />} />
           <Route path="all-products" element={<ViewProducts />} />

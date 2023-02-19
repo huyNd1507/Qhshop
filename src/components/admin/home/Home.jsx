@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
-import InfoBox from "../../infoBox/InfoBox";
-import styles from "./Home.module.scss";
 import { AiFillDollarCircle } from "react-icons/ai";
 import { BsCart4 } from "react-icons/bs";
 import { FaCartArrowDown } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   selectProducts,
   STORE_PRODUCTS,
@@ -15,6 +14,10 @@ import {
   selectTotalOrderAmount,
   STORE_ORDERS,
 } from "../../../redux/slice/orderSlice";
+
+import InfoBox from "../../infoBox/InfoBox";
+import "./Home.scss";
+import { selectUserName } from "../../../redux/slice/authSlice";
 import useFetchCollection from "../../../customHooks/useFetchCollection";
 import Chart from "../../chart/Chart";
 
@@ -27,6 +30,8 @@ const Home = () => {
   const products = useSelector(selectProducts);
   const orders = useSelector(selectOrderHistory);
   const totalOrderAmount = useSelector(selectTotalOrderAmount);
+  const users = useSelector(selectUserName);
+  // console.log("userlogin: ", users);
 
   const fbProducts = useFetchCollection("products");
   const { data } = useFetchCollection("orders");
@@ -45,27 +50,42 @@ const Home = () => {
   }, [dispatch, data, fbProducts]);
 
   return (
-    <div className={styles.home}>
+    <div className="home">
       <h2>Admin Home</h2>
-      <div className={styles["info-box"]}>
-        <InfoBox
-          cardClass={`${styles.card} ${styles.card1}`}
-          title={"Earnings"}
-          count={`$${totalOrderAmount}`}
-          icon={earningIcon}
-        />
-        <InfoBox
-          cardClass={`${styles.card} ${styles.card2}`}
-          title={"Products"}
-          count={products.length}
-          icon={productIcon}
-        />
-        <InfoBox
-          cardClass={`${styles.card} ${styles.card3}`}
-          title={"Orders"}
-          count={orders.length}
-          icon={ordersIcon}
-        />
+
+      <div className="row">
+        <div className="col-3  col-sm-6 ">
+          <InfoBox
+            Cardclass="card1"
+            title={"Earnings"}
+            count={`$${totalOrderAmount}`}
+            icon={earningIcon}
+          />
+        </div>
+        <div className="col-3  col-sm-6 ">
+          <InfoBox
+            Cardclass="card2"
+            title={"Products"}
+            count={products.length}
+            icon={productIcon}
+          />
+        </div>
+        <div className="col-3  col-sm-6 ">
+          <InfoBox
+            Cardclass="card3"
+            title={"Orders"}
+            count={orders.length}
+            icon={ordersIcon}
+          />
+        </div>
+        <div className="col-3  col-sm-6 ">
+          <InfoBox
+            Cardclass="card4"
+            title={"Users"}
+            count={users.length}
+            icon={productIcon}
+          />
+        </div>
       </div>
       <div>
         <Chart />

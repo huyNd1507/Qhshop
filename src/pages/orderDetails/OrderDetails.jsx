@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useFetchDocument from "../../customHooks/useFetchDocument";
 import spinnerImg from "../../assets/spinner.jpg";
-import styles from "./OrderDetails.module.scss";
+import "./OrderDetails.scss";
 const OrderDetails = () => {
   const [order, setOrder] = useState(null);
   const { id } = useParams();
@@ -13,15 +13,17 @@ const OrderDetails = () => {
   }, [document]);
 
   return (
-    <section>
-      <div className={`container ${styles.table}`}>
+    <section className="order-details">
+      <div className="container ">
         <h2>Order Details</h2>
-        <div>
+
+        <button className="--btn --btn-primary">
           <Link to="/order-history">&larr; Back To Orders</Link>
-        </div>
+        </button>
+
         <br />
         {order === null ? (
-          <img src={spinnerImg} alt="Loading..." style={{ width: "50px" }} />
+          <img src={spinnerImg} alt="Loading..." className="img-loading" />
         ) : (
           <>
             <p>
@@ -48,7 +50,8 @@ const OrderDetails = () => {
               <thead>
                 <tr>
                   <th>s/n</th>
-                  <th>Product</th>
+                  <th>Name product</th>
+                  <th>Image Product</th>
                   <th>Price</th>
                   <th>Quantity</th>
                   <th>Total</th>
@@ -63,20 +66,15 @@ const OrderDetails = () => {
                       <td>
                         <b>{index + 1}</b>
                       </td>
+                      <td>{name}</td>
                       <td>
-                        <p>
-                          <b>{name}</b>
-                        </p>
-                        <img
-                          src={imageURL}
-                          alt={name}
-                          style={{ width: "100px" }}
-                        />
+                        <img src={imageURL} alt={name} />
                       </td>
+
                       <td>${price}</td>
                       <td>{cartQuantity}</td>
                       <td>${price * cartQuantity}</td>
-                      <td className={styles.icons}>
+                      <td className="icons">
                         <Link to={`/review-product/${id}`}>
                           <button className="--btn --btn-primary">
                             Review Product

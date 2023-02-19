@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
-import "./_Pagination.scss";
+import "./Pagination.scss";
 
 const Pagination = ({
   currentPage,

@@ -1,6 +1,6 @@
 import React from "react";
 import imgNotFound from "../../../src/assets/image/notfound.png";
-import "./_notfound.scss";
+import "./Notfound.scss";
 
 const NotFound = () => {
   return (

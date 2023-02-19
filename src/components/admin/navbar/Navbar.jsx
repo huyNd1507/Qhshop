@@ -2,17 +2,17 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { selectUserName } from "../../../redux/slice/authSlice";
-import styles from "./Navbar.module.scss";
+import "./Navbar.scss";
 import { FaUserCircle } from "react-icons/fa";
 
-const activeLink = ({ isActive }) => (isActive ? `${styles.active}` : "");
+const activeLink = ({ isActive }) => (isActive ? "active" : "");
 
 const Navbar = () => {
   const userName = useSelector(selectUserName);
 
   return (
-    <div className={styles.navbar}>
-      <div className={styles.user}>
+    <div className="navbars">
+      <div className="user">
         <FaUserCircle size={40} color="#fff" />
         <h4>{userName}</h4>
       </div>

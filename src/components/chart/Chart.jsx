@@ -9,8 +9,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import Card from "../card/Card";
-import styles from "./Chart.module.scss";
+import "./Chart.scss";
 import { selectOrderHistory } from "../../redux/slice/orderSlice";
 import { useSelector } from "react-redux";
 
@@ -74,11 +73,9 @@ const Chart = () => {
   };
 
   return (
-    <div className={styles.charts}>
-      <Card cardClass={styles.card}>
-        <h3>Order Status Chart</h3>
-        <Bar options={options} data={data} />
-      </Card>
+    <div className="charts">
+      <h3>Order Status Chart</h3>
+      <Bar options={options} data={data} />
     </div>
   );
 };

@@ -4,9 +4,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-import styles from "./auth.module.scss";
-import Card from "../../components/card/Card";
-import registerImage from "../../assets/register.png";
+import "./Auth.scss";
+import registerImage from "../../assets/image/register.jpg";
 import { auth } from "../../firebase/config";
 import Loader from "../../components/loader/Loader";
 
@@ -21,7 +20,7 @@ const Register = () => {
   const registerUser = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      toast.error("Mật khẩu không khớp!");
+      toast.error("Password incorrect!");
     }
     setIsloading(true);
 
@@ -29,7 +28,7 @@ const Register = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         setIsloading(false);
-        toast.success("Đăng kí thành công ");
+        toast.success("Sign up successfully ");
         navigate("/login");
       })
       .catch((error) => {
@@ -40,11 +39,10 @@ const Register = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <section className={`container ${styles.auth}`}>
-        <Card>
-          <div className={styles.form}>
-            <h2>Đăng kí</h2>
-
+      <section className="auth">
+        <div className="auth-container">
+          <div className="form">
+            <h2>Register</h2>
             <form onSubmit={registerUser}>
               <input
                 type="text"
@@ -55,7 +53,7 @@ const Register = () => {
               />
               <input
                 type="password"
-                placeholder="Mật khẩu"
+                placeholder="Password"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -68,18 +66,18 @@ const Register = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
               <button type="submit" className="--btn --btn-primary --btn-block">
-                Đăng kí
+                Register
               </button>
             </form>
 
-            <span className={styles.register}>
-              <p>Bạn đã có tài khoản?</p>
-              <Link to="/login">Đăng nhập</Link>
+            <span className="register">
+              <p>Do you already have an account??</p>
+              <Link to="/login">Log in</Link>
             </span>
           </div>
-        </Card>
-        <div className={styles.img}>
-          <img src={registerImage} alt="Register" width="400" />
+          <div className="auth-img">
+            <img src={registerImage} alt="Login" />
+          </div>
         </div>
       </section>
     </>

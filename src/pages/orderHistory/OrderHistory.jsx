@@ -5,7 +5,7 @@ import Loader from "../../components/loader/Loader";
 import useFetchCollection from "../../customHooks/useFetchCollection";
 import { selectUserID } from "../../redux/slice/authSlice";
 import { selectOrderHistory, STORE_ORDERS } from "../../redux/slice/orderSlice";
-import styles from "./OrderHistory.module.scss";
+import "./OrderHistory.scss";
 
 const OrderHistory = () => {
   const { data, isLoading } = useFetchCollection("orders");
@@ -26,8 +26,8 @@ const OrderHistory = () => {
   const filteredOrders = orders.filter((order) => order.userID === userID);
 
   return (
-    <section>
-      <div className={`container ${styles.order}`}>
+    <section className="order-history">
+      <div className="container ">
         <h2>Your Order History</h2>
         <p>
           Open an order to leave a <b>Product Review</b>
@@ -35,7 +35,7 @@ const OrderHistory = () => {
         <br />
         <>
           {isLoading && <Loader />}
-          <div className={styles.table}>
+          <div className="table">
             {filteredOrders.length === 0 ? (
               <p>No order found</p>
             ) : (
@@ -73,8 +73,8 @@ const OrderHistory = () => {
                           <p
                             className={
                               orderStatus !== "Delivered"
-                                ? `${styles.pending}`
-                                : `${styles.delivered}`
+                                ? "pending"
+                                : "delivered"
                             }
                           >
                             {orderStatus}

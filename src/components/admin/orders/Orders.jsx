@@ -8,7 +8,7 @@ import {
   STORE_ORDERS,
 } from "../../../redux/slice/orderSlice";
 import Loader from "../../loader/Loader";
-import styles from "./Orders.module.scss";
+import "./Orders.scss";
 
 const Orders = () => {
   const { data, isLoading } = useFetchCollection("orders");
@@ -27,7 +27,7 @@ const Orders = () => {
 
   return (
     <>
-      <div className={styles.order}>
+      <div className="order">
         <h2>Your Order History</h2>
         <p>
           Open an order to <b>Change order status</b>
@@ -35,7 +35,7 @@ const Orders = () => {
         <br />
         <>
           {isLoading && <Loader />}
-          <div className={styles.table}>
+          <div className="table">
             {orders.length === 0 ? (
               <p>No order found</p>
             ) : (
@@ -73,8 +73,8 @@ const Orders = () => {
                           <p
                             className={
                               orderStatus !== "Delivered"
-                                ? `${styles.pending}`
-                                : `${styles.delivered}`
+                                ? "pending"
+                                : "delivered"
                             }
                           >
                             {orderStatus}

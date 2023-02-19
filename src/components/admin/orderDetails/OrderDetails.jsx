@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useFetchDocument from "../../../customHooks/useFetchDocument";
-import styles from "./OrderDetails.module.scss";
+import "./OrderDetails.scss";
 import spinnerImg from "../../../assets/spinner.jpg";
 import { Link, useParams } from "react-router-dom";
 import ChangeOrderStatus from "../changeOrderStatus/ChangeOrderStatus";
@@ -16,11 +16,11 @@ const OrderDetails = () => {
 
   return (
     <>
-      <div className={styles.table}>
+      <div className="table">
         <h2>Order Details</h2>
-        <div>
+        <button className="--btn --btn-primary">
           <Link to="/admin/orders">&larr; Back To Orders</Link>
-        </div>
+        </button>
         <br />
         {order === null ? (
           <img src={spinnerImg} alt="Loading..." style={{ width: "50px" }} />
@@ -36,21 +36,23 @@ const OrderDetails = () => {
               <b>Order Status</b> {order.orderStatus}
             </p>
             <p>
-              <b>Shipping Address</b>
-              <br />
-              Name: {order.shippingAddress.name}
-              <br />
-              Phone: {order.shippingAddress.phone}
-              <br />
-              Address: {order.shippingAddress.city},
-              <br />
-              Country: {order.shippingAddress.country}
+              <b>Name: </b> {order.shippingAddress.name}
             </p>
-            <br />
+            <p>
+              <b>Phone: </b> {order.shippingAddress.phone}
+            </p>
+            <p>
+              <b>City: </b> {order.shippingAddress.city},
+            </p>
+            <p>
+              <b>Country: </b> {order.shippingAddress.country}
+            </p>
+
             <table>
               <thead>
                 <tr>
                   <th>s/n</th>
+                  <th>Name product</th>
                   <th>Product</th>
                   <th>Price</th>
                   <th>Quantity</th>
@@ -65,19 +67,13 @@ const OrderDetails = () => {
                       <td>
                         <b>{index + 1}</b>
                       </td>
+                      <td>{name}</td>
                       <td>
-                        <p>
-                          <b>{name}</b>
-                        </p>
-                        <img
-                          src={imageURL}
-                          alt={name}
-                          style={{ width: "100px" }}
-                        />
+                        <img src={imageURL} alt={name} />
                       </td>
-                      <td>{price}</td>
+                      <td>${price}</td>
                       <td>{cartQuantity}</td>
-                      <td>{(price * cartQuantity).toFixed(2)}</td>
+                      <td>${price * cartQuantity}</td>
                     </tr>
                   );
                 })}

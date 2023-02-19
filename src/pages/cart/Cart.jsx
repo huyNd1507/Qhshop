@@ -9,7 +9,7 @@ import {
 } from "react-icons/ai";
 
 import { selectIsLoggedIn } from "../../redux/slice/authSlice";
-import "./_Cart.scss";
+import "./Cart.scss";
 import {
   ADD_TO_CART,
   CALCULATE_SUBTOTAL,
@@ -68,16 +68,16 @@ const Cart = () => {
     <div className="cart">
       <div className="container">
         <div className="breadcumb">
-          <Link to="/">home</Link>
+          <Link to="/">Home</Link>
           <span>
             <AiOutlineDoubleRight />
           </span>
-          <Link to="/cart">Cart</Link>
+          <Link to="/shop">Cart</Link>
         </div>
         <div className="row">
           <div className="col-9 col-sm-12">
             {cartItems.length === 0 ? (
-              <p>Giỏ hàng đang trống</p>
+              <p>No product</p>
             ) : (
               <>
                 {cartItems.map((cart, index) => {
@@ -105,7 +105,7 @@ const Cart = () => {
                           <span>Brand: {brand} </span>
 
                           <button
-                            className="btn btn-del"
+                            className="--btn "
                             onClick={() => removeFromCart(cart)}
                           >
                             <AiTwotoneDelete />
@@ -118,16 +118,16 @@ const Cart = () => {
                         </div>
                         <div className="cart-item_content--quantity">
                           <div
-                            className="btn btn-left"
+                            className="--btn btn-left"
                             onClick={() => decreaseCart(cart)}
                           >
                             <AiOutlineMinus />
                           </div>
-                          <div className="btn quantity-selector">
+                          <div className="--btn quantity-selector">
                             {cartQuantity}
                           </div>
                           <div
-                            className="btn btn-left"
+                            className="--btn btn-left"
                             onClick={() => increaseCart(cart)}
                           >
                             <AiOutlinePlus />
@@ -145,15 +145,15 @@ const Cart = () => {
           </div>
           <div className="col-3 col-sm-12">
             <div className="cart-actions">
-              <h2>Bạn có {cartTotalQuantity} sản phẩm trong giỏ hàng</h2>
+              <h2>You have {cartTotalQuantity} products</h2>
               <span>
-                Tổng tiền: <p>${cartTotalAmount}</p>
+                Total: <p>${cartTotalAmount}</p>
               </span>
-              <button className="btn" onClick={checkout}>
-                Thanh toán
+              <button className="--btn --btn-primary" onClick={checkout}>
+                Checkout
               </button>
-              <button className="btn">
-                <Link to="/shop">Tiếp tục mua hàng</Link>
+              <button className="--btn --btn-primary">
+                <Link to="/shop">Continue Shopping</Link>
               </button>
             </div>
           </div>

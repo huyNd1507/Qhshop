@@ -3,16 +3,15 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-import { FcGoogle } from "react-icons/fc";
+import { BsGoogle } from "react-icons/bs";
 import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
 
-import styles from "./auth.module.scss";
-import loginImage from "../../assets/login.png";
-import Card from "../../components/card/Card";
+import "./Auth.scss";
+import loginImage from "../../assets/image/login.webp";
 import { auth } from "../../firebase/config";
 import Loader from "../../components/loader/Loader";
 import { selectPreviousURL } from "../../redux/slice/cartSlice";
@@ -39,7 +38,7 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         setIsloading(false);
-        toast.success("Đăng nhập thành công");
+        toast.success("Logged in successfully");
         redicretUser();
       })
       .catch((error) => {
@@ -54,7 +53,7 @@ const Login = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
-        toast.success("Đăng nhập thành công");
+        toast.success("Logged in successfully");
         redicretUser();
       })
       .catch((error) => {
@@ -65,14 +64,13 @@ const Login = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <section className={`container ${styles.auth}`}>
-        <div className={styles.img}>
-          <img src={loginImage} alt="Login" width="400" />
-        </div>
-        <Card>
-          <div className={styles.form}>
-            <h2>Đăng nhập</h2>
-
+      <section className="auth">
+        <div className="auth-container">
+          <div className="auth-img">
+            <img src={loginImage} alt="Login" />
+          </div>
+          <div className="form">
+            <h2>Login</h2>
             <form onSubmit={loginUser}>
               <input
                 type="text"
@@ -89,10 +87,10 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button type="submit" className="--btn --btn-primary --btn-block">
-                Đăng nhập
+                Login
               </button>
-              <div className={styles.links}>
-                <Link to="/reset">Quên mật khẩu ?</Link>
+              <div className="links">
+                <Link to="/reset">Forgot password ?</Link>
               </div>
               <p>-- or --</p>
             </form>
@@ -100,14 +98,14 @@ const Login = () => {
               className="--btn --btn-danger --btn-block"
               onClick={signWithGoogle}
             >
-              <FcGoogle color="#fff" /> Đăng nhập với Google
+              <BsGoogle className="button-icon" /> Sign in with Google
             </button>
-            <span className={styles.register}>
-              <p>Bạn đã có tài khoản chưa?</p>
-              <Link to="/register">Đăng kí</Link>
+            <span className="register">
+              <p>Do you already have an account??</p>
+              <Link to="/register">Register</Link>
             </span>
           </div>
-        </Card>
+        </div>
       </section>
     </>
   );

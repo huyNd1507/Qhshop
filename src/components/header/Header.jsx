@@ -6,9 +6,7 @@ import {
   AiOutlineUser,
   AiOutlineShopping,
 } from "react-icons/ai";
-// import styles from "./Header.module.scss";
-import styles from "./_Header.scss";
-import classNames from "classnames/bind";
+import "./Header.scss";
 
 import { auth } from "../../firebase/config";
 import { signOut } from "firebase/auth";
@@ -25,8 +23,6 @@ import {
   CALCULATE_TOTAL_QUANTITY,
   selectCartTotalQuantity,
 } from "../../redux/slice/cartSlice";
-
-const cx = classNames.bind(styles);
 
 const Header = () => {
   const activeLink = ({ isActive }) => (isActive ? "active" : "");
@@ -84,10 +80,6 @@ const Header = () => {
     setShowMenu(!showMenu);
   };
 
-  const hideMenu = () => {
-    setShowMenu(false);
-  };
-
   const logoutUser = () => {
     signOut(auth)
       .then(() => {
@@ -100,33 +92,27 @@ const Header = () => {
   };
 
   return (
-    <header className={scrollPage ? `${cx("fixed")}` : ""}>
-      <div className={cx("mobile-menu bg-second")}>
-        <Link to="/" className={cx("mb-logo")}>
+    <header className={scrollPage ? "fixed" : ""}>
+      <div className="mobile-menu bg-second">
+        <Link to="/" className="mb-logo">
           QHShop
         </Link>
-        <span className={cx("mb-menu-toggle")}>
+        <span className="mb-menu-toggle">
           <AiOutlineMenu onClick={toggleMenu} />
         </span>
       </div>
 
-      <div
-        className={
-          !showMenu
-            ? `${cx("header-wrapper")}`
-            : `${cx("header-wrapper active")}`
-        }
-      >
-        <span className={cx("mb-menu-toggle mb-menu-close")}>
+      <div className={!showMenu ? "header-wrapper" : "header-wrapper active"}>
+        <span className="mb-menu-toggle mb-menu-close">
           <AiOutlineClose onClick={toggleMenu} />
         </span>
 
-        <div className={cx("bg-main")}>
-          <div className={cx("mid-header container")}>
-            <Link to="/" className={cx("logo")} onClick={toggleMenu}>
+        <div className="bg-main">
+          <div className="mid-header container">
+            <Link to="/" className="logo" onClick={toggleMenu}>
               QHShop
             </Link>
-            <ul className={cx("main-menu")} onClick={toggleMenu}>
+            <ul className="main-menu" onClick={toggleMenu}>
               <li>
                 <AdminOnlyLink>
                   <Link to="/admin/home">Admin</Link>
@@ -137,7 +123,7 @@ const Header = () => {
                   Home
                 </NavLink>
               </li>
-              <li className={cx("mega-dropdown")} onClick={activeLink}>
+              <li className="mega-dropdown" onClick={activeLink}>
                 <NavLink to="/shop" className="cc" onClick={activeLink}>
                   Shop
                 </NavLink>
@@ -153,51 +139,49 @@ const Header = () => {
                 </NavLink>
               </li>
             </ul>
-            <ul className={cx("user-menu")} onClick={toggleMenu}>
+            <ul className="user-menu" onClick={toggleMenu}>
               <li>
                 <Link to="/login">
-                  <AiOutlineUser className={cx("bx bx-user-circle")} />
+                  <AiOutlineUser className="bx bx-user-circle" />
                 </Link>
-                <div className={cx("mega-contents")} onClick={toggleMenu}>
-                  <div className={cx("boxs")}>
-                    <ul>
-                      <li className={cx("text-red ")}>
-                        <ShowOnLogin>
-                          <Link to="/">Hi, {displayName}</Link>
-                        </ShowOnLogin>
-                      </li>
-                      <li>
-                        <ShowOnLogin>
-                          <Link to="/order-history">My Orders</Link>
-                        </ShowOnLogin>
-                      </li>
-                      <li>
-                        <ShowOnLogin>
-                          <Link to="/reset">reset password</Link>
-                        </ShowOnLogin>
-                      </li>
-                      <li>
-                        <ShowOnLogin>
-                          <Link to="/" onClick={logoutUser}>
-                            Logout
-                          </Link>
-                        </ShowOnLogin>
-                      </li>
-                      <li>
-                        <ShowOnLogout>
-                          <Link to="/login">Login</Link>
-                        </ShowOnLogout>
-                      </li>
-                      <li>
-                        <ShowOnLogout>
-                          <Link to="/register">Register</Link>
-                        </ShowOnLogout>
-                      </li>
-                    </ul>
-                  </div>
+                <div className="mega-contents" onClick={toggleMenu}>
+                  <ul className="boxs">
+                    <li className="text-red">
+                      <ShowOnLogin>
+                        <Link to="/">Hi, {displayName}</Link>
+                      </ShowOnLogin>
+                    </li>
+                    <li>
+                      <ShowOnLogin>
+                        <Link to="/order-history">My Orders</Link>
+                      </ShowOnLogin>
+                    </li>
+                    <li>
+                      <ShowOnLogin>
+                        <Link to="/reset">reset password</Link>
+                      </ShowOnLogin>
+                    </li>
+                    <li>
+                      <ShowOnLogin>
+                        <Link to="/" onClick={logoutUser}>
+                          Logout
+                        </Link>
+                      </ShowOnLogin>
+                    </li>
+                    <li>
+                      <ShowOnLogout>
+                        <Link to="/login">Login</Link>
+                      </ShowOnLogout>
+                    </li>
+                    <li>
+                      <ShowOnLogout>
+                        <Link to="/register">Register</Link>
+                      </ShowOnLogout>
+                    </li>
+                  </ul>
                 </div>
               </li>
-              <li className={cx("carts")}>
+              <li className="carts">
                 <Link to="/cart">
                   <AiOutlineShopping />
                   <span>{cartTotalQuantity}</span>
@@ -207,8 +191,8 @@ const Header = () => {
           </div>
         </div>
 
-        <div className={cx("bg-second")}>
-          <div className={cx("bottom-header container")}></div>
+        <div className="bg-second">
+          <div className="bottom-header container"></div>
         </div>
       </div>
     </header>

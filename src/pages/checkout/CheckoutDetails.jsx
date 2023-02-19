@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import "./_Checkout.scss";
+import "./Checkout.scss";
 import { CountryDropdown } from "react-country-region-selector";
+import { AiOutlineDoubleRight } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SAVE_SHIPPING_ADDRESS } from "../../redux/slice/checkoutSlice";
 import CheckoutSummary from "../../components/checkoutSummary/CheckoutSummary";
 
@@ -38,13 +39,20 @@ const CheckoutDetails = () => {
 
   return (
     <div className="container">
+      <div className="breadcumb">
+        <Link to="/">Home</Link>
+        <span>
+          <AiOutlineDoubleRight />
+        </span>
+        <Link to="/shop">ChekoutDetails</Link>
+      </div>
       <div className="row flex-reverse">
         <div className="col-7 col-sm-12 ">
           <div className="custumer-info">
-            <h2>Thông tin vận chuyển</h2>
+            <h2>Shipping Information</h2>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label>Họ tên</label>
+                <label>FullName</label>
                 <input
                   type="text"
                   required
@@ -54,7 +62,7 @@ const CheckoutDetails = () => {
                 />
               </div>
               <div className="form-group">
-                <label>Số điện thoại</label>
+                <label>Phone</label>
                 <input
                   type="number"
                   required
@@ -64,7 +72,7 @@ const CheckoutDetails = () => {
                 />
               </div>
               <div className="form-group">
-                <label>Địa chỉ</label>
+                <label>Address</label>
                 <input
                   type="text"
                   required
@@ -86,7 +94,7 @@ const CheckoutDetails = () => {
                   })
                 }
               />
-              <button className="btn">Tiến hành thanh toán</button>
+              <button className="--btn --btn-primary ">Make a payment</button>
             </form>
           </div>
         </div>

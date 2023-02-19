@@ -1,5 +1,5 @@
 import React from "react";
-import "./_Footer.scss";
+import "./Footer.scss";
 
 import { BsFacebook, BsTwitter } from "react-icons/bs";
 import { AiFillInstagram, AiFillYoutube } from "react-icons/ai";

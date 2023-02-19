@@ -30,8 +30,9 @@ const Checkout = () => {
     dispatch(CALCULATE_TOTAL_QUANTITY());
   }, [dispatch, cartItems]);
 
-  const description = `eShop payment: email: ${customerEmail}, Amount: ${totalAmount}`;
+  // https://qhshop-ecommerce.onrender.com/create-payment-intent`
 
+  const description = `eShop payment: email: ${customerEmail}, Amount: ${totalAmount}`;
   useEffect(() => {
     fetch("http://localhost:8080/create-payment-intent", {
       method: "POST",

@@ -9,17 +9,19 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+
+import "./AddProduct.scss";
 import { db, storage } from "../../../firebase/config";
-import Card from "../../card/Card";
 import Loader from "../../loader/Loader";
-import styles from "./AddProduct.module.scss";
 import { selectProducts } from "../../../redux/slice/productSlice";
 
 const categories = [
   { id: 1, name: "Laptop" },
-  { id: 2, name: "Electronics" },
-  { id: 3, name: "Fashion" },
-  { id: 4, name: "Phone" },
+  { id: 2, name: "Headphone" },
+  { id: 3, name: "Tivi" },
+  { id: 4, name: "Ipad" },
+  { id: 5, name: "Phone" },
+  { id: 6, name: "Apple Watch" },
 ];
 
 const initialState = {
@@ -143,108 +145,104 @@ const AddProduct = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <div className={styles.product}>
+      <div className="product">
         <h2>{detectForm(id, "Add New Product", "Edit Product")}</h2>
-        <Card cardClass={styles.card}>
-          <form onSubmit={detectForm(id, addProduct, editProduct)}>
-            <label>Product name:</label>
+        <form onSubmit={detectForm(id, addProduct, editProduct)}>
+          <label>Product name:</label>
+          <input
+            type="text"
+            placeholder="Product name"
+            required
+            name="name"
+            value={product.name}
+            onChange={(e) => handleInputChange(e)}
+          />
+
+          <label>Product image:</label>
+          {uploadProgress === 0 ? null : (
+            <div className="progress">
+              <div
+                className="progress-bar"
+                style={{ width: `${uploadProgress}%` }}
+              >
+                {uploadProgress < 100
+                  ? `Uploading ${uploadProgress}`
+                  : `Upload Complete ${uploadProgress}%`}
+              </div>
+            </div>
+          )}
+
+          <input
+            type="file"
+            accept="image/*"
+            placeholder="Product Image"
+            name="image"
+            onChange={(e) => handleImageChange(e)}
+          />
+
+          {product.imageURL === "" ? null : (
             <input
               type="text"
-              placeholder="Product name"
               required
-              name="name"
-              value={product.name}
-              onChange={(e) => handleInputChange(e)}
+              placeholder="Image URL"
+              name="imageURL"
+              value={product.imageURL}
+              disabled
             />
+          )}
 
-            <label>Product image:</label>
-            <Card cardClass={styles.group}>
-              {uploadProgress === 0 ? null : (
-                <div className={styles.progress}>
-                  <div
-                    className={styles["progress-bar"]}
-                    style={{ width: `${uploadProgress}%` }}
-                  >
-                    {uploadProgress < 100
-                      ? `Uploading ${uploadProgress}`
-                      : `Upload Complete ${uploadProgress}%`}
-                  </div>
-                </div>
-              )}
+          <label>Product price:</label>
+          <input
+            type="number"
+            placeholder="Product price"
+            required
+            name="price"
+            value={product.price}
+            onChange={(e) => handleInputChange(e)}
+          />
+          <label>Product Category:</label>
+          <select
+            required
+            name="category"
+            value={product.category}
+            onChange={(e) => handleInputChange(e)}
+          >
+            <option value="" disabled>
+              -- choose product category --
+            </option>
+            {categories.map((cat) => {
+              return (
+                <option key={cat.id} value={cat.name}>
+                  {cat.name}
+                </option>
+              );
+            })}
+          </select>
 
-              <input
-                type="file"
-                accept="image/*"
-                placeholder="Product Image"
-                name="image"
-                onChange={(e) => handleImageChange(e)}
-              />
+          <label>Product Company/Brand:</label>
+          <input
+            type="text"
+            placeholder="Product brand"
+            required
+            name="brand"
+            value={product.brand}
+            onChange={(e) => handleInputChange(e)}
+          />
 
-              {product.imageURL === "" ? null : (
-                <input
-                  type="text"
-                  // required
-                  placeholder="Image URL"
-                  name="imageURL"
-                  value={product.imageURL}
-                  disabled
-                />
-              )}
-            </Card>
+          <label>Product Description</label>
+          <textarea
+            name="desc"
+            required
+            value={product.desc}
+            onChange={(e) => handleInputChange(e)}
+            cols="30"
+            rows="10"
+          ></textarea>
 
-            <label>Product price:</label>
-            <input
-              type="number"
-              placeholder="Product price"
-              required
-              name="price"
-              value={product.price}
-              onChange={(e) => handleInputChange(e)}
-            />
-            <label>Product Category:</label>
-            <select
-              required
-              name="category"
-              value={product.category}
-              onChange={(e) => handleInputChange(e)}
-            >
-              <option value="" disabled>
-                -- choose product category --
-              </option>
-              {categories.map((cat) => {
-                return (
-                  <option key={cat.id} value={cat.name}>
-                    {cat.name}
-                  </option>
-                );
-              })}
-            </select>
-
-            <label>Product Company/Brand:</label>
-            <input
-              type="text"
-              placeholder="Product brand"
-              required
-              name="brand"
-              value={product.brand}
-              onChange={(e) => handleInputChange(e)}
-            />
-
-            <label>Product Description</label>
-            <textarea
-              name="desc"
-              required
-              value={product.desc}
-              onChange={(e) => handleInputChange(e)}
-              cols="30"
-              rows="10"
-            ></textarea>
-
-            <button className="--btn --btn-primary">
-              {detectForm(id, "Save Product", "Edit Product")}
-            </button>
-          </form>
-        </Card>
+          <button className="--btn --btn-primary">
+            {detectForm(id, "Save Product", "Edit Product")}
+          </button>
+        </form>
       </div>
     </>
   );

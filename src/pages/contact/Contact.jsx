@@ -1,12 +1,12 @@
 import React, { useRef } from "react";
-import "./_Contact.scss";
-import { AiOutlineDoubleRight } from "react-icons/ai";
-import { Link } from "react-router-dom";
-
-// import { FaPhoneAlt, FaEnvelope, FaTwitter } from "react-icons/fa";
-// import { GoLocation } from "react-icons/go";
+import "./Contact.scss";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
+import { HiLocationMarker } from "react-icons/hi";
+import { MdEmail } from "react-icons/md";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { AiOutlineDoubleRight } from "react-icons/ai";
 
 const Contact = () => {
   const form = useRef();
@@ -40,7 +40,7 @@ const Contact = () => {
           <span>
             <AiOutlineDoubleRight />
           </span>
-          <Link to="/contact">Contact us</Link>
+          <Link to="/shop">Contact</Link>
         </div>
         <div className="row">
           <div className=" col-6 col-sm-12 ">
@@ -54,43 +54,35 @@ const Contact = () => {
           <div className=" col-6 col-sm-12 ">
             <div className="wrap-content">
               <div className="contact-header">
-                <h1>Liên hệ</h1>
+                <h1>Contact</h1>
               </div>
               <div className="contact-info">
                 <ul className="list-info">
                   <li>
-                    <p>Địa chỉ chúng tôi</p>
-                    <p>
-                      <strong>
-                        235 Hoàng Quốc Việt, Cổ Nhuế, Bắc Từ Liêm, Hà Nội
-                      </strong>
-                    </p>
+                    <HiLocationMarker />
+                    <strong>
+                      235 Hoàng Quốc Việt, Cổ Nhuế, Bắc Từ Liêm, Hà Nội
+                    </strong>
                   </li>
                   <li>
-                    <p>Email chúng tôi</p>
-                    <p>
-                      <strong>daihocdienluc@edu.env.com</strong>
-                    </p>
+                    <MdEmail />
+                    <strong>daihocdienluc@edu.env.com</strong>
                   </li>
                   <li>
-                    <p>Điện thoại</p>
-                    <p>
-                      <strong>1900.636.099</strong>
-                    </p>
+                    <BsFillTelephoneFill />
+                    <strong>1900.636.099</strong>
                   </li>
                   <li>
-                    <p>Thời gian làm việc</p>
-                    <p>
-                      <strong>
-                        Thứ 2 đến Thứ 6 từ 8h đến 18h; Thứ 7 và Chủ nhật từ 8h00
-                        đến 17h00{" "}
-                      </strong>
-                    </p>
+                    <HiLocationMarker />
+                    <strong>
+                      Thứ 2 đến Thứ 6 từ 8h đến 18h; Thứ 7 và Chủ nhật từ 8h00
+                      đến 17h00
+                    </strong>
                   </li>
                 </ul>
               </div>
               <div className="contact-send">
-                <h2>Gửi thắc mắc cho chúng tôi</h2>
+                <h2>Send us a question</h2>
 
                 <form ref={form} onSubmit={sendEmail}>
                   <div className="input-group">
@@ -124,7 +116,7 @@ const Contact = () => {
                     <textarea name="message" cols="30" rows="10"></textarea>
                   </div>
                   <button className="button dark" type="submit">
-                    Gửi cho chúng tôi
+                    Send us
                   </button>
                 </form>
               </div>

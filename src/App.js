@@ -16,7 +16,7 @@ import {
 import { Header, Footer } from "./components";
 
 import AdminOnlyRoute from "./components/adminOnlyRoute/AdminOnlyRoute";
-import ProductDetails from "./components/product/components/ProductDetails";
+import ProductDetails from "./components/product/ProductDetails/ProductDetails";
 import Cart from "./pages/cart/Cart";
 import CheckoutDetails from "./pages/checkout/CheckoutDetails";
 import Checkout from "./pages/checkout/Checkout";
@@ -34,11 +34,11 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reset" element={<Reset />} />
-          <Route path="/shop" element={<Shop />} />
           <Route path="/blog" element={<Blog />} />
 
           <Route
